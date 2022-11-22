@@ -189,7 +189,7 @@ class IDCardController extends Controller
             ->margin(1)
             ->encoding('UTF-8')
             ->merge('/public/logos/doh.png')
-            ->generate('http://192.168.224.62:3000/api/verify/'.Crypt::encryptString($user->code))
+            ->generate(env('VERIFICATION_DOMAIN').'/'.Crypt::encryptString($user->code))
         ));
         
         $qr_border = Image::canvas(280, 280, '#0b3f29');
@@ -346,7 +346,7 @@ class IDCardController extends Controller
             ->margin(1)
             ->encoding('UTF-8')
             ->merge('/public/logos/doh.png')
-            ->generate('http://192.168.224.62:3000/api/verify'.Crypt::encryptString($user->code))
+            ->generate(env('VERIFICATION_DOMAIN').'/'.Crypt::encryptString($user->code))
         ));
         
         $qr_border = Image::canvas(260, 260, '#298e67');

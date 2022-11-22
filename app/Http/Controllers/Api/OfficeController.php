@@ -36,7 +36,8 @@ class OfficeController extends Controller
      */
     public function store(CreateOffice $request)
     {
-        return response()->json(Office::create($request->validated()));
+        $office = Office::create($request->validated());
+        return $this->show($office->id);
     }
 
     /**
@@ -47,9 +48,7 @@ class OfficeController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Office::with('parent')
-            ->find($id)
-        );
+        return response()->json(Office::with('parent')->find($id));
     }
 
     /**
@@ -66,7 +65,7 @@ class OfficeController extends Controller
         $office->fill($request->validated())
             ->save();
         
-        return response()->json($office);
+        return $this->show($office->id);
     }
 
     /**

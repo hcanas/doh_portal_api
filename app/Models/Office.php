@@ -12,6 +12,7 @@ class Office extends Model
     protected $fillable = [
         'name',
         'short_name',
+        'unit',
         'parent_id',
     ];
     
